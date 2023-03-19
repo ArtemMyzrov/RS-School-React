@@ -1,6 +1,8 @@
 import React, { Component, Key } from 'react';
 import Data from './data.json';
 import styles from '../components/cards.module.css';
+import card from './card';
+import Card from './card';
 
 class ProductCards extends Component {
   constructor(props: {} | Readonly<{}>) {
@@ -25,24 +27,16 @@ class ProductCards extends Component {
         {errorMessage ? (
           <p>{errorMessage}</p>
         ) : (
-          <div className={styles.container}>
-            <div className={styles.row}>
-              {Array.from(products).map((product) => (
-                <div className="cards" key={(product as any).id}>
-                  <div className={styles.card}>
-                    <img
-                      className={styles.cardimg}
-                      src={(product as any).img}
-                      alt={`${(product as any).user_name}, ${(product as any).country}`}
-                    />
-                    <h5 className="cardtitle">Author: {(product as any).user_name}</h5>
-                    <p>Country: {(product as any).country}</p>
-                    <p>Contacts: {(product as any).safe_email}</p>
-                  </div>
-                </div>
-              ))}
+          <>
+            <h2>Products</h2>
+            <div className={styles.container}>
+              <div className={styles.row}>
+                {Array.from(products).map((product) => (
+                  <Card key={(product as any).id} product={product} />
+                ))}
+              </div>
             </div>
-          </div>
+          </>
         )}
       </div>
     );
