@@ -7,6 +7,6 @@ describe('cards test', () => {
   test('Should show title', () => {
     render(<Cards />);
 
-    expect(screen.getByText(/Products/i)).toBeDefined();
+    expect(screen.getByText(/Cards/i)).toBeDefined();
   });
 });

@@ -28,7 +28,7 @@ class ProductCards extends Component {
           <p>{errorMessage}</p>
         ) : (
           <>
-            <h2>Products</h2>
+            <h2 className={styles.title_prod}>Cards</h2>
             <div className={styles.container}>
               <div className={styles.row}>
                 {Array.from(products).map((product) => (

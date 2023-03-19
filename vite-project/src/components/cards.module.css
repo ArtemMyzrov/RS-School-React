@@ -8,7 +8,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 .card:hover {
   background-color: grey;
@@ -26,4 +26,7 @@
   color: aqua;
 
   padding: 5px;
+}
+.title_prod {
+  margin-top: 30px;
 }
