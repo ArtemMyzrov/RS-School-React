@@ -1,26 +1,31 @@
-import React, { Component } from 'react';
+import React, { ChangeEvent, Component } from 'react';
 import styles from '../components/search.module.css';
 
-class InputComponent extends Component {
+class InputComponentState {
+  textValue: string;
+  constructor(textValue: string) {
+    this.textValue = textValue;
+  }
+}
+
+class InputComponent extends Component<{}, InputComponentState> {
   constructor(props: {} | Readonly<{}>) {
     super(props);
 
     let storedValue = localStorage.getItem('input');
-    this.state = {
-      textValue: storedValue ? storedValue : '',
-    };
+    this.state = new InputComponentState(storedValue ? storedValue : '');
 
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e: { target: { value: any } }) {
+  handleChange(e: ChangeEvent<HTMLInputElement>) {
     this.setState({
       textValue: e.target.value,
     });
   }
 
   componentWillUnmount() {
-    localStorage.setItem('input', (this.state as any).textValue);
+    localStorage.setItem('input', this.state.textValue);
   }
 
   render() {
@@ -33,7 +38,7 @@ class InputComponent extends Component {
           autoComplete="off"
           placeholder="your name"
           onChange={this.handleChange}
-          value={(this.state as any).textValue}
+          value={this.state.textValue}
         />
       </div>
     );

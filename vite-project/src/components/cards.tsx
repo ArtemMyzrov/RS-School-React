@@ -1,14 +1,19 @@
-import React, { Component, Key } from 'react';
+import React, { Component } from 'react';
 import Data from './data.json';
 import styles from '../components/cards.module.css';
-import card from './card';
 import Card from './card';
+import Product from './product.model';
 
-class ProductCards extends Component {
+class ProductCardsState {
+  products: Product[] = [];
+  errorMessage: string = '';
+}
+
+class ProductCards extends Component<{}, ProductCardsState> {
   constructor(props: {} | Readonly<{}>) {
     super(props);
 
-    this.state = { products: '', errorMessage: '' };
+    this.state = new ProductCardsState();
   }
 
   componentDidMount() {
@@ -20,7 +25,7 @@ class ProductCards extends Component {
   }
 
   render() {
-    const { products, errorMessage } = this.state as any;
+    const { products, errorMessage } = this.state;
 
     return (
       <div className={styles.wrap}>
@@ -31,8 +36,8 @@ class ProductCards extends Component {
             <h2 className={styles.title_prod}>Cards</h2>
             <div className={styles.container}>
               <div className={styles.row}>
-                {Array.from(products).map((product) => (
-                  <Card key={(product as any).id} product={product} />
+                {products.map((product) => (
+                  <Card key={product.id} product={product} />
                 ))}
               </div>
             </div>

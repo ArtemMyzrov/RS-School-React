@@ -1,18 +1,19 @@
 import React from 'react';
 import styles from '../components/cards.module.css';
+import Product from './product.model';
 
-const Card = ({ product }: any) => {
+const Card = ({ product }: { product: Product }) => {
   return (
-    <div className="cards" key={(product as any).id}>
+    <div className="cards" key={product.id}>
       <div className={styles.card}>
         <img
           className={styles.cardimg}
-          src={(product as any).img}
-          alt={`${(product as any).user_name}, ${(product as any).country}`}
+          src={product.img}
+          alt={`${product.user_name}, ${product.country}`}
         />
-        <h5 className="cardtitle">Author: {(product as any).user_name}</h5>
-        <p>Country: {(product as any).country}</p>
-        <p>Contacts: {(product as any).safe_email}</p>
+        <h5 className="cardtitle">Author: {product.user_name}</h5>
+        <p>Country: {product.country}</p>
+        <p>Contacts: {product.safe_email}</p>
       </div>
     </div>
   );
