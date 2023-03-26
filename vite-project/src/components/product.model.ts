@@ -1,5 +1,3 @@
-import { ImgHTMLAttributes } from 'react';
-
 class Product {
   img?: string;
   user_name?: string;
@@ -16,5 +14,5 @@ export class Items {
   inputYear?: boolean;
   inputNow?: boolean;
   inputImg?: string;
-  id: number = 0;
+  id?: number = 0;
 }
