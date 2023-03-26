@@ -24,39 +24,21 @@ class Form extends Component {
     inputImg: '',
   };
 
-  handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+  inputNameRef = React.createRef<HTMLInputElement>();
+  inputDateRef = React.createRef<HTMLInputElement>();
+  inputCountryRef = React.createRef<HTMLSelectElement>();
+  inputNowRef = React.createRef<HTMLInputElement>();
+  inputYearRef = React.createRef<HTMLInputElement>();
+  inputImgRef = React.createRef<HTMLInputElement>();
+
+  handleChange = () => {
     this.setState({
-      inputName: e.target.value,
-    });
-  };
-  handleDateChange = (e: ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      inputDate: e.target.value,
-    });
-  };
-  handleCountryChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    this.setState({
-      inputCountry: e.target.value,
-    });
-  };
-  handleYearChange = (e: ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      inputYear: e.target.checked,
-    });
-  };
-  handleNowYesChange = (e: ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      inputNow: e.target.checked,
-    });
-  };
-  handleNowNoChange = (e: ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      inputNow: !e.target.checked,
-    });
-  };
-  handleImgChange = (e: ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      inputImg: e.target.value,
+      inputName: this.inputNameRef.current?.value,
+      inputDate: this.inputDateRef.current?.value,
+      inputCountry: this.inputCountryRef.current?.value,
+      inputYear: this.inputYearRef.current?.checked,
+      inputNow: this.inputNowRef.current?.checked,
+      inputImg: this.inputImgRef.current?.value,
     });
   };
 
@@ -118,23 +100,25 @@ class Form extends Component {
           <form onSubmit={this.handleSub}>
             <label htmlFor="fullName">Full Name</label>
             <input
-              onChange={this.handleNameChange}
+              onChange={this.handleChange}
               value={inputName}
               type="text"
               placeholder="Capitalized name please"
               name="fullName"
               id="fullName"
+              ref={this.inputNameRef}
             />
             {this.state.inputNameError && (
               <label style={{ color: 'yellow' }}>*you didn't enter a name</label>
             )}
             <label htmlFor="DOB">Date of Birth</label>
             <input
-              onChange={this.handleDateChange}
+              onChange={this.handleChange}
               value={inputDate}
               type="date"
               name="DOB"
               id="DOB"
+              ref={this.inputDateRef}
             />
             {this.state.inputDateError && (
               <label style={{ color: 'yellow' }}>*you have not entered a date</label>
@@ -142,9 +126,10 @@ class Form extends Component {
             <label htmlFor="country">Country</label>
             <select
               value={inputCountry}
-              onChange={this.handleCountryChange}
+              onChange={this.handleChange}
               id="country"
               name="country"
+              ref={this.inputCountryRef}
             >
               <option value="">Choose a country</option>
               <option value="US">United States of America</option>
@@ -158,10 +143,11 @@ class Form extends Component {
             <label htmlFor="ageVerification">Are you 18 years of age or older? </label>
             <div className={styles.years}>
               <input
-                onChange={this.handleYearChange}
+                onChange={this.handleChange}
                 type="checkbox"
                 name="ageVerification"
                 checked={inputYear}
+                ref={this.inputYearRef}
               />
               Yes
               <br />
@@ -170,16 +156,17 @@ class Form extends Component {
             <label htmlFor="now"> Is it now?: </label>
             <div className={styles.now}>
               <input
-                onChange={this.handleNowYesChange}
+                onChange={this.handleChange}
                 type="radio"
                 name="now"
                 checked={inputNow}
                 value="yes"
+                ref={this.inputNowRef}
               />
               Yes
               <br />
               <input
-                onChange={this.handleNowNoChange}
+                onChange={this.handleChange}
                 type="radio"
                 name="now"
                 checked={!inputNow}
@@ -189,7 +176,13 @@ class Form extends Component {
             </div>
             <label htmlFor="file">Upload Image: </label>
             <div className="addImg">
-              <input onChange={this.handleImgChange} value={inputImg} type="file" id="file" />
+              <input
+                onChange={this.handleChange}
+                value={inputImg}
+                type="file"
+                id="file"
+                ref={this.inputImgRef}
+              />
               <br />
             </div>
             <br />
