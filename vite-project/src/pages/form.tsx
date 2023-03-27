@@ -1,5 +1,4 @@
-import { render } from '@testing-library/react';
-import React, { ChangeEvent, Component, FormEvent } from 'react';
+import React, { Component, FormEvent } from 'react';
 import FormCards from '../components/form/formCards';
 import styles from './form.module.css';
 import { Items } from 'components/product.model';
@@ -109,7 +108,7 @@ class Form extends Component {
               ref={this.inputNameRef}
             />
             {this.state.inputNameError && (
-              <label style={{ color: 'yellow' }}>*you didn't enter a name</label>
+              <label style={{ color: 'yellow' }}>*you didn&apos;t enter a name</label>
             )}
             <label htmlFor="DOB">Date of Birth</label>
             <input

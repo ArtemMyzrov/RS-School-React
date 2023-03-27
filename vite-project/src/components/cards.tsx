@@ -6,11 +6,11 @@ import Product from './product.model';
 
 class ProductCardsState {
   products: Product[] = [];
-  errorMessage: string = '';
+  errorMessage = '';
 }
 
-class ProductCards extends Component<{}, ProductCardsState> {
-  constructor(props: {} | Readonly<{}>) {
+class ProductCards extends Component<object, ProductCardsState> {
+  constructor(props: object | Readonly<object>) {
     super(props);
 
     this.state = new ProductCardsState();
