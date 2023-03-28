@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  min-width: 320px;
+  background-color: blueviolet;
+}
+a {
+  color: wheat;
+  text-decoration: none;
+  font-size: 25px;
+  border: 2px solid wheat;
+  padding: 5px;
+  border-radius: 15px;
+}
+a:hover {
+  background-color: grey;
+}
+nav {
+  display: flex;
+  justify-content: space-around;
+}

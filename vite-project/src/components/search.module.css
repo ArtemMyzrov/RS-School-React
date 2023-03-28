@@ -1,0 +1,17 @@
+.search {
+  margin-top: 25px;
+  font-size: 20px;
+}
+
+.search input {
+  margin-left: 10px;
+  width: 150px;
+  height: 25px;
+  border-radius: 10px;
+  font-weight: 700;
+  border: none;
+  padding-left: 15px;
+}
+.search input:hover {
+  background-color: yellow;
+}
