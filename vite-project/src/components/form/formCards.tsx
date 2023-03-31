@@ -14,7 +14,7 @@ const FormCards = ({ items }: { items: Items[] }) => {
           <h2>From : {item.inputCountry}</h2>
           <h2>Age : {item.inputYear ? 'adult ' : 'minor '}</h2>
           <h2>Is it true ? : {item.inputNow ? 'Yes!' : 'No =)'}</h2>
-          <h2>Img: {item.inputImg}</h2>
+          <img style={{ width: '100px', height: '100px' }} src={item.inputImg} />
         </div>
       ))}
     </div>

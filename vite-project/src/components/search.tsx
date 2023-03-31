@@ -8,9 +8,9 @@ const InputComponent = () => {
     localStorage.setItem('input', textValue);
   }, [textValue]);
 
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTextValue(e.target.value);
-  }
+  };
 
   return (
     <div className={styles.search}>

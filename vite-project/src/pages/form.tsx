@@ -35,7 +35,14 @@ const Form: React.FC = () => {
     setInputCountry(inputCountryRef.current?.value || '');
     setInputYear(inputYearRef.current?.checked || false);
     setInputNow(inputNowRef.current?.checked || false);
-    setInputImg(inputImgRef.current?.value || '');
+  };
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const image = e.target.files[0];
+      const url = URL.createObjectURL(image);
+      setInputImg(url);
+    }
   };
 
   const handleSub = (e: React.FormEvent) => {
@@ -157,13 +164,7 @@ const Form: React.FC = () => {
           </div>
           <label htmlFor="file">Upload Image: </label>
           <div className="addImg">
-            <input
-              onChange={handleChange}
-              value={inputImg}
-              type="file"
-              id="file"
-              ref={inputImgRef}
-            />
+            <input onChange={handleImageUpload} type="file" id="file" ref={inputImgRef} />
             <br />
           </div>
           <br />
