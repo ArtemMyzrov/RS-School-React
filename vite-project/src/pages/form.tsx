@@ -85,7 +85,6 @@ const Form: React.FC = () => {
     setInputImg('');
 
     window.alert(' Thanks we have added your details !');
-    console.log(itemsCard);
   };
 
   return (
