@@ -1,146 +1,92 @@
 import React from 'react';
-import { useState, useRef } from 'react';
+import { useForm } from 'react-hook-form';
 import FormCards from '../components/form/formCards';
 import styles from './form.module.css';
-import { Items } from 'components/product.model';
+import { Items } from '../components/product.model';
 
 const itemsCard: Items[] = [];
 let id = 0;
+
+type Inputs = {
+  fullName: string;
+  DOB: string;
+  country: string;
+  ageVerification: boolean;
+  now: boolean;
+  file: FileList;
+};
 
 const isUppercase = (a: string) => {
   return /^\p{Lu}/u.test(a);
 };
 
 const Form: React.FC = () => {
-  const [inputName, setInputName] = useState<string>('');
-  const [inputNameError, setInputNameError] = useState<boolean>(false);
-  const [inputDate, setInputDate] = useState<string>('');
-  const [inputDateError, setInputDateError] = useState<boolean>(false);
-  const [inputCountry, setInputCountry] = useState<string>('');
-  const [inputCountryError, setInputCountryError] = useState<boolean>(false);
-  const [inputYear, setInputYear] = useState<boolean>(false);
-  const [inputNow, setInputNow] = useState<boolean>(false);
-  const [inputImg, setInputImg] = useState<string>('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<Inputs>();
 
-  const inputNameRef = useRef<HTMLInputElement>(null);
-  const inputDateRef = useRef<HTMLInputElement>(null);
-  const inputCountryRef = useRef<HTMLSelectElement>(null);
-  const inputNowRef = useRef<HTMLInputElement>(null);
-  const inputYearRef = useRef<HTMLInputElement>(null);
-  const inputImgRef = useRef<HTMLInputElement>(null);
-
-  const handleChange = () => {
-    setInputName(inputNameRef.current?.value || '');
-    setInputDate(inputDateRef.current?.value || '');
-    setInputCountry(inputCountryRef.current?.value || '');
-    setInputYear(inputYearRef.current?.checked || false);
-    setInputNow(inputNowRef.current?.checked || false);
-  };
-
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const image = e.target.files[0];
-      const url = URL.createObjectURL(image);
-      setInputImg(url);
-    }
-  };
-
-  const handleSub = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!isUppercase(inputName)) {
-      setInputNameError(true);
+  const onSubmit = (data: Inputs) => {
+    if (!isUppercase(data.fullName)) {
       return;
-    } else {
-      setInputNameError(false);
-    }
-
-    if (!inputDate) {
-      setInputDateError(true);
-      return;
-    } else {
-      setInputDateError(false);
-    }
-    if (!inputCountry) {
-      setInputCountryError(true);
-      return;
-    } else {
-      setInputCountryError(false);
     }
 
     itemsCard.push({
-      inputName,
-      inputDate,
-      inputCountry,
-      inputYear,
-      inputNow,
-      inputImg,
+      inputName: data.fullName,
+      inputDate: data.DOB,
+      inputCountry: data.country,
+      inputYear: data.ageVerification,
+      inputNow: data.now,
+      inputImg: URL.createObjectURL(data.file[0]),
       id: id++,
     });
-    setInputName('');
-    setInputDate('');
-    setInputCountry('');
-    setInputYear(false);
-    setInputNow(false);
-    setInputImg('');
 
-    window.alert(' Thanks we have added your details !');
+    window.alert('Thanks we have added your details !');
+    reset();
   };
-
   return (
     <div className={styles.wrap}>
       <div className={styles.formPage}>
-        <form onSubmit={handleSub}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="fullName">Full Name</label>
           <input
-            onChange={handleChange}
-            value={inputName}
+            {...register('fullName', {
+              required: true,
+              validate: (value) => isUppercase(value),
+            })}
             type="text"
             placeholder="Capitalized name please"
             name="fullName"
             id="fullName"
-            ref={inputNameRef}
           />
-          {inputNameError && (
-            <label style={{ color: 'yellow' }}>*you didn&apos;t enter a name</label>
+          {errors.fullName && (
+            <label style={{ color: 'yellow' }}>you didn&apos;t enter a name</label>
           )}
+
           <label htmlFor="DOB">Date of Birth</label>
-          <input
-            onChange={handleChange}
-            value={inputDate}
-            type="date"
-            name="DOB"
-            id="DOB"
-            ref={inputDateRef}
-          />
-          {inputDateError && (
-            <label style={{ color: 'yellow' }}>*you have not entered a date</label>
-          )}
+          <input {...register('DOB', { required: true })} type="date" name="DOB" id="DOB" />
+          {errors.DOB && <label style={{ color: 'yellow' }}>*you have not entered a date</label>}
           <label htmlFor="country">Country</label>
-          <select
-            value={inputCountry}
-            onChange={handleChange}
-            id="country"
-            name="country"
-            ref={inputCountryRef}
-          >
+
+          <select {...register('country', { required: true })} id="country" name="country">
             <option value="">Choose a country</option>
             <option value="US">United States of America</option>
             <option value="UK">United Kingdom</option>
             <option value="Canada">Canada</option>
           </select>
-          {inputCountryError && (
-            <label style={{ color: 'yellow' }}>*you have not entered a country</label>
+
+          {errors.country && (
+            <label style={{ color: 'yellow' }}>you have not entered a country</label>
           )}
           <br />
           <label htmlFor="ageVerification">Are you 18 years of age or older? </label>
           <div className={styles.years}>
             <input
-              onChange={handleChange}
+              {...register('ageVerification', { required: false })}
               type="checkbox"
               name="ageVerification"
-              checked={inputYear}
-              ref={inputYearRef}
             />
             Yes
             <br />
@@ -148,29 +94,25 @@ const Form: React.FC = () => {
           <br />
           <label htmlFor="now"> Is it now?: </label>
           <div className={styles.now}>
-            <input
-              onChange={handleChange}
-              type="radio"
-              name="now"
-              checked={inputNow}
-              value="yes"
-              ref={inputNowRef}
-            />
+            <input {...register('now', { required: true })} type="radio" name="now" value="yes" />
             Yes
             <br />
-            <input onChange={handleChange} type="radio" name="now" checked={!inputNow} value="no" />
+            <input {...register('now', { required: false })} type="radio" name="now" value="no" />
             No
           </div>
           <label htmlFor="file">Upload Image: </label>
           <div className="addImg">
-            <input onChange={handleImageUpload} type="file" id="file" ref={inputImgRef} />
-            <br />
+            <input {...register('file', { required: true })} type="file" name="file" id="file" />
+            {errors.file && (
+              <label style={{ color: 'yellow' }}>you have not uploaded an image</label>
+            )}
           </div>
-          <br />
-          <button className={styles.submit}>Submit</button>
+          <button type="submit">Submit</button>
         </form>
       </div>
-      <FormCards items={itemsCard} />
+      <div className={styles.card}>
+        <FormCards items={itemsCard} />
+      </div>
     </div>
   );
 };
