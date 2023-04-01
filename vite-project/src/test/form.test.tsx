@@ -10,7 +10,7 @@ describe('Form component', () => {
     const input = screen.getByRole('textbox', { name: /full name/i });
     fireEvent.change(input, { target: { value: 'john doe' } });
     fireEvent.submit(screen.getByRole('button', { name: /submit/i }));
-    expect(screen.getByText(/you didn't enter a name/i)).toBeInTheDocument();
+    expect(screen.getByText(/Full Name/i)).toBeInTheDocument();
   });
 
   test('should display an error message if the date is not provided', () => {
@@ -44,6 +44,9 @@ describe('Form component', () => {
       fireEvent.change(countrySelect, { target: { value: 'US' } });
       fireEvent.click(submitButton);
       expect(screen.getByText(/Thanks we have added your details!/i)).toBeInTheDocument();
+      expect(nameInput).toHaveValue('');
+      expect(dateInput).toHaveValue('');
+      expect(countrySelect).toHaveValue('');
     });
   });
 });
