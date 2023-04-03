@@ -1,0 +1,13 @@
+.notFound {
+  color: wheat;
+}
+
+.notFound > h2 {
+  color: wheat;
+}
+.notFound > p {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 200px;
+  font-weight: 500;
+}
