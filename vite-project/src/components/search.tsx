@@ -5,12 +5,19 @@ const InputComponent = () => {
   const [textValue, setTextValue] = useState(() => localStorage.getItem('input') || '');
 
   useEffect(() => {
-    localStorage.setItem('input', textValue);
-  }, [textValue]);
+    const savedSearch = localStorage.getItem('input');
+    if (savedSearch) {
+      setTextValue(savedSearch);
+    }
+  }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTextValue(e.target.value);
   };
+
+  useEffect(() => {
+    localStorage.setItem('input', textValue);
+  }, [textValue]);
 
   return (
     <div className={styles.search}>

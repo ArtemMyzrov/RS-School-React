@@ -12,7 +12,7 @@ type Inputs = {
   DOB: string;
   country: string;
   ageVerification: boolean;
-  now: boolean;
+  now: string;
   file: FileList;
 };
 
@@ -38,7 +38,7 @@ const Form: React.FC = () => {
       inputDate: data.DOB,
       inputCountry: data.country,
       inputYear: data.ageVerification,
-      inputNow: data.now,
+      inputNow: data.now === 'yes' ? true : false,
       inputImg: URL.createObjectURL(data.file[0]),
       id: id++,
     });
@@ -91,15 +91,17 @@ const Form: React.FC = () => {
             Yes
             <br />
           </div>
+
           <br />
           <label htmlFor="now"> Is it now?: </label>
           <div className={styles.now}>
             <input {...register('now', { required: true })} type="radio" name="now" value="yes" />
             Yes
             <br />
-            <input {...register('now', { required: false })} type="radio" name="now" value="no" />
+            <input {...register('now', { required: true })} type="radio" name="now" value="no" />
             No
           </div>
+          {errors.now && <label style={{ color: 'yellow' }}>you have not select </label>}
           <label htmlFor="file">Upload Image: </label>
           <div className="addImg">
             <input {...register('file', { required: true })} type="file" name="file" id="file" />
