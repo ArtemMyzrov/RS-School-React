@@ -1,18 +1,12 @@
 import React from 'react';
-import styles from './home.module.css';
-import InputComponent from '../components/search';
-import ProductCards from '../components/cards';
+import Search from '../components/search';
 
-const home = () => {
+const Home = () => {
   return (
-    <>
-      <div className={styles.home}>
-        <h2>Home Page</h2>
-        <InputComponent />
-        <ProductCards />
-      </div>
-    </>
+    <div>
+      <Search />
+    </div>
   );
 };
 
-export default home;
+export default Home;
