@@ -1,11 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import { test, expect } from 'vitest';
 import React from 'react';
-import Home from '../pages/home';
+import Search from '../components/search';
 
-test('renders home page', () => {
-  render(<Home />);
-  const homeHeader = screen.getByRole('heading', { name: /Home Page/i });
+test('renders Search component', () => {
+  render(<Search />);
+  const searchInput = screen.getByPlaceholderText('Search');
+  const searchButton = screen.getByRole('button', { name: 'Search' });
 
-  expect(homeHeader).toBeDefined();
+  expect(searchInput).toBeDefined();
+  expect(searchButton).toBeDefined();
 });

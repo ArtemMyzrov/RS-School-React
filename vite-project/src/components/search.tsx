@@ -14,7 +14,7 @@ interface Photo {
 }
 
 const API_KEY = '592524de8e2f7300c220b535be2fbb82';
-const API_URL = `https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=${API_KEY}&format=json&nojsoncallback=1&per_page=10`;
+const API_URL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${API_KEY}&format=json&nojsoncallback=1&per_page=10`;
 
 const Search = () => {
   const [query, setQuery] = useState('');
@@ -23,10 +23,13 @@ const Search = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async () => {
-    setLoading(true);
-    const response = await axios.get(`${API_URL}&tags=${query}`);
-    console.log(response.data);
-    setPhotos(response.data.photos.photo);
+    try {
+      setLoading(true);
+      const response = await axios.get(`${API_URL}&tags=${query}`);
+      setPhotos(response.data.photos.photo);
+    } catch {
+      alert('Error getting a response');
+    }
     setLoading(false);
   };
 
@@ -55,6 +58,7 @@ const Search = () => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyPress={handleKeyPress}
+          placeholder="Search"
         />
         <button className={styles.button} onClick={handleSearch}>
           Search
