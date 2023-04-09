@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import SearchBar from '../components/search/search';
 import SearchResult from '../components/search/search.result';
@@ -20,11 +20,27 @@ const Search = () => {
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    const storedQuery = localStorage.getItem('searchQuery');
+    const storedResult = localStorage.getItem('searchResult');
+    if (storedQuery && storedResult) {
+      setQuery(storedQuery);
+      setPhotos(JSON.parse(storedResult));
+    }
+  }, []);
+
   const handleSearch = async () => {
-    setLoading(true);
-    const response = await axios.get(`${API_URL}&tags=${query}`);
-    setPhotos(response.data.photos.photo);
-    setLoading(false);
+    try {
+      setLoading(true);
+      const response = await axios.get(`${API_URL}&tags=${query}`);
+      setPhotos(response.data.photos.photo);
+      localStorage.setItem('searchQuery', query);
+      localStorage.setItem('searchResult', JSON.stringify(response.data.photos.photo));
+    } catch (error) {
+      alert('Error data acquisition');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
