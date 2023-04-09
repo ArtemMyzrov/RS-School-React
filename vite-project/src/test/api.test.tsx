@@ -1,23 +1,10 @@
 import React from 'react';
-import axios, { Axios, AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { render, fireEvent, waitFor } from '@testing-library/react';
-import Search from '../components/search';
+import Search from '../pages/home';
 import { vi } from 'vitest';
-import { D, T } from 'vitest/dist/types-5872e574';
 
 vi.mock('axios');
-
-interface MockedResponseData {
-  photos: {
-    photo: {
-      id: string;
-      title: string;
-      secret: string;
-      server: string;
-      url: string;
-    }[];
-  };
-}
 
 describe('Search component', () => {
   it('should render without error', async () => {
