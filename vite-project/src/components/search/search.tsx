@@ -1,22 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchPhotos, setQuerys } from '../../redux/features/search/searchSlice';
+import { AppDispatch, RootState } from '../../redux/store';
 import styles from './search.module.css';
 
-interface SearchBarProps {
-  query: string;
-  handleSearch: () => Promise<void>;
-  setQuery: React.Dispatch<React.SetStateAction<string>>;
-  handleKeyPress: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-}
+// interface SearchBarProps {
+//   query: string;
+//   handleSearch: () => Promise<void>;
+//   setQuery: React.Dispatch<React.SetStateAction<string>>;
+//   handleKeyPress: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+// }
 
-const SearchBar = ({ query, handleSearch, setQuery }: SearchBarProps) => {
+const SearchBar = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const [query, setQuery] = useState<string>('');
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      handleSearch();
+      // handleSearch();
+      dispatch(fetchPhotos(query));
+      dispatch(setQuerys(query));
     }
   };
 
   const handleButtonClick = () => {
-    handleSearch();
+    dispatch(fetchPhotos(query));
   };
 
   return (

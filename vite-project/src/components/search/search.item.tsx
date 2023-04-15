@@ -1,21 +1,10 @@
 import React from 'react';
+import Photo from 'redux/features/search/model';
 import styles from './search.module.css';
 
 interface Props {
-  photo: {
-    secret: string;
-    server: string;
-    id: string;
-    title: string;
-    url: string;
-  };
-  setSelectedPhoto: (photo: {
-    secret: string;
-    server: string;
-    id: string;
-    title: string;
-    url: string;
-  }) => void;
+  photo: Photo;
+  setSelectedPhoto: (photo: Photo) => void;
 }
 
 const Item = ({ photo, setSelectedPhoto }: Props) => {
