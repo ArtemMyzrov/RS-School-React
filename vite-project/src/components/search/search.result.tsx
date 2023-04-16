@@ -21,7 +21,7 @@ const SearchResult = ({
 
   handleOverlayClick,
 }: SearchResultProps) => {
-  const photos = useSelector<RootState>((state) => state.search.photos) as Photo[];
+  const photos = useSelector<RootState, Photo[]>((state) => state.search.photos);
   const loading = useSelector<RootState>((state) => state.search.loading);
   return (
     <div>

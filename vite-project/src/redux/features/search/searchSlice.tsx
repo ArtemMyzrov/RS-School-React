@@ -10,8 +10,8 @@ interface SearchState {
 }
 
 const initialState: SearchState = {
-  query: '',
-  photos: [],
+  query: localStorage.getItem('query') || '',
+  photos: JSON.parse(localStorage.getItem('searchResult') || '[]'),
   loading: false,
 };
 
@@ -20,8 +20,10 @@ const API_URL = `https://www.flickr.com/services/rest/?method=flickr.photos.sear
 
 export const fetchPhotos = createAsyncThunk<Photo[], string>(
   'search/fetchPhotos',
-  async (tags: string, { rejectWithValue, dispatch }) => {
+  async (tags: string) => {
     const response = await axios.get(`${API_URL}&tags=${tags}`);
+    localStorage.setItem('searchResult', JSON.stringify(response.data.photos.photo));
+
     return response.data.photos.photo;
   }
 );
@@ -32,14 +34,15 @@ export const searchSlice = createSlice({
   reducers: {
     setQuerys: (state, action) => {
       state.query = action.payload;
-      localStorage.setItem('query', JSON.stringify(action.payload));
+      localStorage.setItem('query', state.query);
     },
-    setLoading: (state, action) => {
-      state.loading = action.payload;
-    },
-    setPhotos: (state, action) => {
-      state.photos = action.payload;
-    },
+    // setLoading: (state, action) => {
+    //   state.loading = action.payload;
+    // },
+    // setPhotos: (state, action) => {
+    //   state.photos = action.payload;
+    //   localStorage.setItem('searchResult', JSON.stringify(state.photos));
+    // },
   },
   extraReducers: (builder) => {
     builder
@@ -50,13 +53,13 @@ export const searchSlice = createSlice({
         state.loading = false;
         state.photos = action.payload;
       })
-      .addCase(fetchPhotos.rejected, (state, action) => {
+      .addCase(fetchPhotos.rejected, (state) => {
         state.loading = false;
       });
   },
 });
 
-export const { setQuerys, setLoading, setPhotos } = searchSlice.actions;
+export const { setQuerys } = searchSlice.actions;
 
 export const selectPhotos = (state: SearchState) => state.photos;
 export const selectLoading = (state: SearchState) => state.loading;

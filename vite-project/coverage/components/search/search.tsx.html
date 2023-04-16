@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">82.05% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>39/39</span>
+                <span class='fraction'>32/39</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">82.05% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>39/39</span>
+                <span class='fraction'>32/39</span>
             </div>
         
             
@@ -109,58 +109,58 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchPhotos, setQuerys } from '../../redux/features/search/searchSlice';
+import { AppDispatch } from '../../redux/store';
 import styles from './search.module.css';
 &nbsp;
-interface SearchBarProps {
-  query: string;
-  handleSearch: () =&gt; Promise&lt;void&gt;;
-  setQuery: React.Dispatch&lt;React.SetStateAction&lt;string&gt;&gt;;
-  handleKeyPress: (event: React.KeyboardEvent&lt;HTMLInputElement&gt;) =&gt; void;
-}
+const SearchBar = () =&gt; {
+  const dispatch = useDispatch&lt;AppDispatch&gt;();
+  const [query, setQuery] = useState&lt;string&gt;('');
 &nbsp;
-const SearchBar = ({ query, handleSearch, setQuery }: SearchBarProps) =&gt; {
-  const handleKeyPress = (event: React.KeyboardEvent&lt;HTMLInputElement&gt;) =&gt; {
-    if (event.key === 'Enter') {
-      handleSearch();
-    }
-  };
+  const handleKeyPress = <span class="fstat-no" title="function not covered" >(event: React.KeyboardEvent&lt;HTMLInputElement&gt;) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    if (event.key === 'Enter') {</span>
+<span class="cstat-no" title="statement not covered" >      dispatch(fetchPhotos(query));</span>
+<span class="cstat-no" title="statement not covered" >      dispatch(setQuerys(query));</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
 &nbsp;
-  const handleButtonClick = () =&gt; {
-    handleSearch();
-  };
+  const handleButtonClick = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    dispatch(fetchPhotos(query));</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
 &nbsp;
   return (
     &lt;div&gt;
@@ -169,7 +169,7 @@ const SearchBar = ({ query, handleSearch, setQuery }: SearchBarProps) =&gt; {
         placeholder="Search"
         type="text"
         value={query}
-        onChange={(e) =&gt; setQuery(e.target.value)}
+        onChange={<span class="fstat-no" title="function not covered" >(e) =&gt; setQuery(e.target.value)}</span>
         onKeyPress={handleKeyPress}
       /&gt;
       &lt;button className={styles.button} onClick={handleButtonClick}&gt;
@@ -187,7 +187,7 @@ export default SearchBar;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-04-09T16:31:14.989Z
+                at 2023-04-15T15:13:57.296Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

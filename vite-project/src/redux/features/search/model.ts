@@ -3,7 +3,7 @@ export interface Photo {
   server: string;
   id: string;
   title: string;
-  url: string;
+  url?: string;
 }
 
 export default Photo;
