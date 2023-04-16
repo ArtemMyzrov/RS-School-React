@@ -3,10 +3,16 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, test, expect } from 'vitest';
 import '@testing-library/jest-dom';
 import Form from '../pages/form';
+import { Provider } from 'react-redux';
+import { store } from '../redux/store';
 
 describe('Form component', () => {
   test('should display an error message if the name is not capitalized', () => {
-    render(<Form />);
+    render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     const input = screen.getByRole('textbox', { name: /full name/i });
     fireEvent.change(input, { target: { value: 'john doe' } });
     fireEvent.submit(screen.getByRole('button', { name: /submit/i }));
@@ -14,7 +20,11 @@ describe('Form component', () => {
   });
 
   test('should display an error message if the date is not provided', () => {
-    render(<Form />);
+    render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     const input = screen.getByLabelText(/date of birth/i);
     fireEvent.change(input, { target: { value: '' } });
     fireEvent.submit(screen.getByRole('button', { name: /submit/i }));
@@ -22,7 +32,11 @@ describe('Form component', () => {
   });
 
   test('should display an error message if the country is not provided', () => {
-    render(<Form />);
+    render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     const select = screen.getByLabelText(/country/i);
     fireEvent.change(select, { target: { value: '' } });
     fireEvent.submit(screen.getByRole('button', { name: /submit/i }));
@@ -32,7 +46,11 @@ describe('Form component', () => {
 describe('Form component', () => {
   test('should add a new item on form submission', () => {
     beforeEach(() => {
-      render(<Form />);
+      render(
+        <Provider store={store}>
+          <Form />
+        </Provider>
+      );
 
       const nameInput = screen.getByLabelText(/full name/i);
       const dateInput = screen.getByLabelText(/date of birth/i);

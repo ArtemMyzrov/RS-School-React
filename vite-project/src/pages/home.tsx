@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SearchBar from '../components/search/search';
 import SearchResult from '../components/search/search.result';
-import Photo from 'redux/features/search/model';
+import Photo from '../redux/features/search/model';
 
 const Search = () => {
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
