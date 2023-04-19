@@ -3,12 +3,18 @@ import axios, { AxiosResponse } from 'axios';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import Search from '../pages/home';
 import { vi } from 'vitest';
+import { Provider } from 'react-redux';
+import { store } from '../redux/store';
 
 vi.mock('axios');
 
 describe('Search component', () => {
   it('should render without error', async () => {
-    const { getByText, getByPlaceholderText } = render(<Search />);
+    const { getByText, getByPlaceholderText } = render(
+      <Provider store={store}>
+        <Search />
+      </Provider>
+    );
 
     expect(getByPlaceholderText('Search')).toBeDefined();
     expect(getByText('Search')).toBeDefined();
@@ -40,7 +46,11 @@ describe('Search component', () => {
       data,
     } as AxiosResponse);
 
-    const { getByText, getByPlaceholderText } = render(<Search />);
+    const { getByText, getByPlaceholderText } = render(
+      <Provider store={store}>
+        <Search />
+      </Provider>
+    );
     const input = getByPlaceholderText('Search');
     const button = getByText('Search');
 

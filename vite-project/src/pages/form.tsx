@@ -3,6 +3,16 @@ import { useForm } from 'react-hook-form';
 import FormCards from '../components/form/formCards';
 import styles from './form.module.css';
 import { Items } from '../components/product.model';
+import { useDispatch } from 'react-redux';
+import {
+  setFullName,
+  setDOB,
+  setCountry,
+  setAgeVerification,
+  setNow,
+  setFile,
+  resetForm,
+} from '../redux/features/form/formSlice';
 
 const itemsCard: Items[] = [];
 let id = 0;
@@ -21,6 +31,8 @@ const isUppercase = (a: string) => {
 };
 
 const Form: React.FC = () => {
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -32,6 +44,13 @@ const Form: React.FC = () => {
     if (!isUppercase(data.fullName)) {
       return;
     }
+    dispatch(setFullName(data.fullName));
+    dispatch(setDOB(data.DOB));
+    dispatch(setCountry(data.country));
+    dispatch(setAgeVerification(data.ageVerification));
+    dispatch(setNow(data.now));
+    dispatch(setFile(data.file));
+    dispatch(resetForm());
 
     itemsCard.push({
       inputName: data.fullName,
