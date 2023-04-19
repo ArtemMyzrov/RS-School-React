@@ -36,13 +36,6 @@ export const searchSlice = createSlice({
       state.query = action.payload;
       localStorage.setItem('query', state.query);
     },
-    // setLoading: (state, action) => {
-    //   state.loading = action.payload;
-    // },
-    // setPhotos: (state, action) => {
-    //   state.photos = action.payload;
-    //   localStorage.setItem('searchResult', JSON.stringify(state.photos));
-    // },
   },
   extraReducers: (builder) => {
     builder
