@@ -1,5 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { Photo } from './model';
 
@@ -10,8 +9,8 @@ interface SearchState {
 }
 
 const initialState: SearchState = {
-  query: localStorage.getItem('query') || '',
-  photos: JSON.parse(localStorage.getItem('searchResult') || '[]'),
+  query: '', //localStorage.getItem('query') || '',
+  photos: [], //JSON.parse(localStorage.getItem('searchResult') || '[]'),
   loading: false,
 };
 
@@ -36,13 +35,6 @@ export const searchSlice = createSlice({
       state.query = action.payload;
       localStorage.setItem('query', state.query);
     },
-    // setLoading: (state, action) => {
-    //   state.loading = action.payload;
-    // },
-    // setPhotos: (state, action) => {
-    //   state.photos = action.payload;
-    //   localStorage.setItem('searchResult', JSON.stringify(state.photos));
-    // },
   },
   extraReducers: (builder) => {
     builder
