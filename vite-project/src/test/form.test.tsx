@@ -4,12 +4,12 @@ import { describe, test, expect } from 'vitest';
 import '@testing-library/jest-dom';
 import Form from '../pages/form';
 import { Provider } from 'react-redux';
-import { store } from '../redux/store';
+import { createStore } from '../redux/store';
 
 describe('Form component', () => {
   test('should display an error message if the name is not capitalized', () => {
     render(
-      <Provider store={store}>
+      <Provider store={createStore()}>
         <Form />
       </Provider>
     );
@@ -21,7 +21,7 @@ describe('Form component', () => {
 
   test('should display an error message if the date is not provided', () => {
     render(
-      <Provider store={store}>
+      <Provider store={createStore()}>
         <Form />
       </Provider>
     );
@@ -33,7 +33,7 @@ describe('Form component', () => {
 
   test('should display an error message if the country is not provided', () => {
     render(
-      <Provider store={store}>
+      <Provider store={createStore()}>
         <Form />
       </Provider>
     );
@@ -47,7 +47,7 @@ describe('Form component', () => {
   test('should add a new item on form submission', () => {
     beforeEach(() => {
       render(
-        <Provider store={store}>
+        <Provider store={createStore()}>
           <Form />
         </Provider>
       );

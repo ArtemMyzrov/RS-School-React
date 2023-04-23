@@ -26,7 +26,7 @@ const SearchResult = ({
   return (
     <div>
       {loading ? (
-        <div>Progressing...</div>
+        <div className={styles.progress}>Progressing...</div>
       ) : (
         <div className={styles.items}>
           {photos.map((photo) => (

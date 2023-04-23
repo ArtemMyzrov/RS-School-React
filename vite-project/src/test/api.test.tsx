@@ -4,14 +4,14 @@ import { render, fireEvent, waitFor } from '@testing-library/react';
 import Search from '../pages/home';
 import { vi } from 'vitest';
 import { Provider } from 'react-redux';
-import { store } from '../redux/store';
+import { createStore } from '../redux/store';
 
 vi.mock('axios');
 
 describe('Search component', () => {
   it('should render without error', async () => {
     const { getByText, getByPlaceholderText } = render(
-      <Provider store={store}>
+      <Provider store={createStore()}>
         <Search />
       </Provider>
     );
@@ -47,7 +47,7 @@ describe('Search component', () => {
     } as AxiosResponse);
 
     const { getByText, getByPlaceholderText } = render(
-      <Provider store={store}>
+      <Provider store={createStore()}>
         <Search />
       </Provider>
     );
