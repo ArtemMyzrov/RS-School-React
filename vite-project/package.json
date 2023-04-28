@@ -14,6 +14,8 @@
     "copy-files": "copyfiles static/* dist/assets && copyfiles index.html dist && copyfiles -f dist/client/assets/* dist/assets",
     "preview": "vite preview",
     "test": "vitest",
+    "test:cypress": "start-server-and-test http://localhost:7456 cypress",
+    "cypress": "cypress open",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint \"src/**/*.{js,jsx,tsx}\" --fix",
     "coverage": "vitest run --coverage"
@@ -59,9 +61,11 @@
     "@vitejs/plugin-react": "^3.1.0",
     "@vitest/coverage-c8": "^0.29.4",
     "c8": "^7.13.0",
+    "cypress": "^12.11.0",
     "eslint": "^8.36.0",
     "jest": "^29.5.0",
     "jsdom": "^21.1.1",
+    "start-server-and-test": "^2.0.0",
     "typescript": "^4.9.3",
     "vite": "^4.1.0",
     "vitest": "^0.29.3"

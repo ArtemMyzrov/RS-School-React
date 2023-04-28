@@ -10,7 +10,6 @@ import { createStore } from './redux/store';
 import { Provider } from 'react-redux';
 
 const store = createStore();
-//(window as any).__INITIAL_DATA__,
 
 export const Router = () => {
   return (
