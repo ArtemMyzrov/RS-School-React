@@ -6,7 +6,7 @@
   },
   "version": "0.0.0",
   "scripts": {
-    "dev:server": "ts-node server.ts",
+    "dev": "ts-node server.ts",
     "dev:client": "npm run build:client && vite --config vite.config.ts dev",
     "build": "rimraf dist && npm run build:client && npm run build:server",
     "build:client": "vite build --outDir dist/client --ssrManifest",
@@ -14,8 +14,6 @@
     "copy-files": "copyfiles static/* dist/assets && copyfiles index.html dist && copyfiles -f dist/client/assets/* dist/assets",
     "preview": "vite preview",
     "test": "vitest",
-    "test:cypress": "start-server-and-test http://localhost:7456 cypress",
-    "cypress": "cypress open",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint \"src/**/*.{js,jsx,tsx}\" --fix",
     "coverage": "vitest run --coverage"
