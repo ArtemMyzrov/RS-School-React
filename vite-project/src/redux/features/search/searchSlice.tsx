@@ -1,5 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { Photo } from './model';
 
@@ -10,8 +9,8 @@ interface SearchState {
 }
 
 const initialState: SearchState = {
-  query: localStorage.getItem('query') || '',
-  photos: JSON.parse(localStorage.getItem('searchResult') || '[]'),
+  query: '', //localStorage.getItem('query') || '',
+  photos: [], //JSON.parse(localStorage.getItem('searchResult') || '[]'),
   loading: false,
 };
 

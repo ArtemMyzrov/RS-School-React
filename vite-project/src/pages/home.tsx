@@ -17,7 +17,7 @@ const Search = () => {
   };
 
   return (
-    <div>
+    <div style={{ marginTop: '10px' }}>
       <SearchBar />
       <SearchResult
         setSelectedPhoto={setSelectedPhoto}
