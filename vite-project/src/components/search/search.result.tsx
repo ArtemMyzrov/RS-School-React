@@ -1,33 +1,28 @@
 import React from 'react';
 import { FaTimesCircle } from 'react-icons/fa';
 import Modal from 'react-modal';
+import { useSelector } from 'react-redux';
+import Photo from 'redux/features/search/model';
+import { RootState } from 'redux/store';
 import Item from './search.item';
 import styles from './search.module.css';
 
-interface Photo {
-  secret: string;
-  server: string;
-  id: string;
-  title: string;
-  url: string;
-}
 interface SearchResultProps {
-  photos: Photo[];
   setSelectedPhoto: React.Dispatch<React.SetStateAction<Photo | null>>;
   selectedPhoto: Photo | null;
   onCloseModal: () => void;
   handleOverlayClick: (event: React.MouseEvent<HTMLDivElement>) => void;
-  loading: boolean;
 }
 
 const SearchResult = ({
-  photos,
   selectedPhoto,
   onCloseModal,
   setSelectedPhoto,
-  loading,
+
   handleOverlayClick,
 }: SearchResultProps) => {
+  const photos = useSelector<RootState, Photo[]>((state) => state.search.photos);
+  const loading = useSelector<RootState>((state) => state.search.loading);
   return (
     <div>
       {loading ? (
