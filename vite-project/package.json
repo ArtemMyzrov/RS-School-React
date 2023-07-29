@@ -13,7 +13,7 @@
     "lint:fix": "eslint \"src/**/*.{js,jsx,tsx}\" --fix",
     "coverage": "vitest run --coverage",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.55.0",
