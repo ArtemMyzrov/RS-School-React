@@ -21,7 +21,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
+    <div style={{ textAlign: 'center' }}>
       <input
         className={styles.input}
         placeholder="Search"

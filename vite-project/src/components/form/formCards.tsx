@@ -3,10 +3,17 @@ import { Items } from 'components/product.model';
 
 const FormCards = ({ items }: { items: Items[] }) => {
   return (
-    <div>
+    <div style={{ display: 'flex', gap: '15px' }}>
       {items.map((item) => (
         <div
-          style={{ border: '3px solid white', borderRadius: '20px', marginTop: '15px' }}
+          style={{
+            border: '3px solid white',
+            borderRadius: '20px',
+            marginTop: '25px',
+            textAlign: 'center',
+            width: '250px',
+            backgroundColor: 'rgb(3, 86, 89)',
+          }}
           key={item.id}
         >
           <h2>Name : {item.inputName}</h2>
