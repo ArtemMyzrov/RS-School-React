@@ -1,47 +1,37 @@
-import React, { ChangeEvent, Component } from 'react';
+import React, { ChangeEvent, useState, useEffect } from 'react';
 import styles from '../components/search.module.css';
 
-class InputComponentState {
-  textValue: string;
-  constructor(textValue: string) {
-    this.textValue = textValue;
-  }
-}
+const InputComponent = () => {
+  const [textValue, setTextValue] = useState(() => localStorage.getItem('input') || '');
 
-class InputComponent extends Component<object, InputComponentState> {
-  constructor(props: object | Readonly<object>) {
-    super(props);
+  useEffect(() => {
+    const savedSearch = localStorage.getItem('input');
+    if (savedSearch) {
+      setTextValue(savedSearch);
+    }
+  }, []);
 
-    const storedValue = localStorage.getItem('input');
-    this.state = new InputComponentState(storedValue ? storedValue : '');
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setTextValue(e.target.value);
+  };
 
-    this.handleChange = this.handleChange.bind(this);
-  }
+  useEffect(() => {
+    localStorage.setItem('input', textValue);
+  }, [textValue]);
 
-  handleChange(e: ChangeEvent<HTMLInputElement>) {
-    this.setState({
-      textValue: e.target.value,
-    });
-  }
+  return (
+    <div className={styles.search}>
+      <label>Input Here :</label>
+      <input
+        type="text"
+        name="inputname"
+        autoComplete="off"
+        placeholder="your name"
+        onChange={handleChange}
+        value={textValue}
+      />
+    </div>
+  );
+};
 
-  componentWillUnmount() {
-    localStorage.setItem('input', this.state.textValue);
-  }
-
-  render() {
-    return (
-      <div className={styles.search}>
-        <label>Input Here :</label>
-        <input
-          type="text"
-          name="imputname"
-          autoComplete="off"
-          placeholder="your name"
-          onChange={this.handleChange}
-          value={this.state.textValue}
-        />
-      </div>
-    );
-  }
-}
 export default InputComponent;

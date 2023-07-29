@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.9% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/21</span>
+                <span class='fraction'>24/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.9% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/21</span>
+                <span class='fraction'>24/24</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -84,25 +84,31 @@
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
@@ -112,14 +118,17 @@ const FormCards = ({ items }: { items: Items[] }) =&gt; {
   return (
     &lt;div&gt;
       {items.map((item) =&gt; (
-<span class="cstat-no" title="statement not covered" >        &lt;div style={{ border: '2px solid white' }} key={item.id}&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;h2&gt;Name : {item.inputName}&lt;/h2&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;h2&gt;Birthday : {item.inputDate}&lt;/h2&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;h2&gt;From : {item.inputCountry}&lt;/h2&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;h2&gt;Age : {item.inputYear ? 'adult ' : 'minor '}&lt;/h2&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;h2&gt;Is it true ? : {item.inputNow ? 'Yes!' : 'No =)'}&lt;/h2&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;h2&gt;Img: {item.inputImg}&lt;/h2&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
+        &lt;div
+          style={{ border: '3px solid white', borderRadius: '20px', marginTop: '15px' }}
+          key={item.id}
+        &gt;
+          &lt;h2&gt;Name : {item.inputName}&lt;/h2&gt;
+          &lt;h2&gt;Birthday : {item.inputDate}&lt;/h2&gt;
+          &lt;h2&gt;From : {item.inputCountry}&lt;/h2&gt;
+          &lt;h2&gt;Age : {item.inputYear ? <span class="branch-0 cbranch-no" title="branch not covered" >'adult ' : 'minor '}&lt;</span>/h2&gt;
+          &lt;h2&gt;Is it true ? : {item.<span class="branch-0 cbranch-no" title="branch not covered" >inputNow ? 'Yes!' : '</span>No =)'}&lt;/h2&gt;
+          &lt;img style={{ width: '100px', height: '100px' }} src={item.inputImg} /&gt;
+        &lt;/div&gt;
       ))}
     &lt;/div&gt;
   );
@@ -133,7 +142,7 @@ export default FormCards;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-25T15:03:57.353Z
+                at 2023-04-01T22:01:30.841Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
