@@ -8,11 +8,11 @@ class InputComponentState {
   }
 }
 
-class InputComponent extends Component<{}, InputComponentState> {
-  constructor(props: {} | Readonly<{}>) {
+class InputComponent extends Component<object, InputComponentState> {
+  constructor(props: object | Readonly<object>) {
     super(props);
 
-    let storedValue = localStorage.getItem('input');
+    const storedValue = localStorage.getItem('input');
     this.state = new InputComponentState(storedValue ? storedValue : '');
 
     this.handleChange = this.handleChange.bind(this);

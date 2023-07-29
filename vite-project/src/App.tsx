@@ -4,6 +4,7 @@ import React from 'react';
 import NotFound from './pages/NotFound';
 import Home from './pages/home';
 import Header from './components/header';
+import Form from './pages/form';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<h1>About</h1>} />
+        <Route path="form" element={<Form />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
