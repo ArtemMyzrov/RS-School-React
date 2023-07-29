@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://artemmyzrov.github.io/RS-School-React/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -10,7 +11,9 @@
     "test": "vitest",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint \"src/**/*.{js,jsx,tsx}\" --fix",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.55.0",
@@ -36,6 +39,7 @@
     "@vitest/coverage-c8": "^0.29.4",
     "c8": "^7.13.0",
     "eslint": "^8.36.0",
+    "gh-pages": "^5.0.0",
     "jsdom": "^21.1.1",
     "typescript": "^4.9.3",
     "vite": "^4.1.0",
